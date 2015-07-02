@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html>
+  <head>
+
+  </head>
+  
+  
+  <body>
+    <h1 id="welcome">Welcome to GitSearch! </h1>
+    <h1 id="authors">Authors : Ali-Firat Kilic</h1>
+    
+    <div id="user-search">
+    </div>
+    
+    <div id="results">
+    </div>
+  </body>
+      <script src="js/githubsearch.js"></script>
+</html>
+
+
+
