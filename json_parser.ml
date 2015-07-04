@@ -44,6 +44,19 @@ let get_commits str =
   fst (take l 100)
 
 
+let group_commits_by_user l =
+  let table =
+    List.fold_left (fun table commit ->
+        try
+          let author = commit.Git_data.author in 
+          let v = Hashtbl.find table author in
+          Hashtbl.replace table author (v+1);
+          table
+        with Not_found -> Hashtbl.add table commit.Git_data.author 1; table
+      ) (Hashtbl.create 0) l in
+  Hashtbl.fold (fun k v acc -> (k, v) :: acc) table []
+
+
 
                       
   
