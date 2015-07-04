@@ -1,18 +1,26 @@
 open Utils
 
-let global_url = "https://api.github.com/search/repositories?q="
+let github_api_url = "https://api.github.com/"
   
 let concat_parameters data =
   List.map (fun (field,value) -> field ^ "=" ^ value) data
   |> String.concat "&"
-  
-let http_request request data =
+
+let http_request suffix data =
   let response = XmlHttpRequest.create () in
-  let url = global_url ^ request ^ "&" ^ (concat_parameters data) in 
-  response##_open (Js.string "GET", Js.string url, Js.bool true);
+  let url = github_api_url ^ (concat_parameters data) in
   Printf.printf "url = %s\n" url;
+  response##_open(Js.string "GET", Js.string url, Js.bool true);
   response##send (Js.some (Js.string ""));
-  response 
+  response
+
+let search_git_project data = http_request "search/repositories?" data
+
+let search_commiters full_name = http_request (full_name ^ "/contributors") []
+
+let search_commits full_name = http_request (full_name ^ "/commits") [] 
+
+  
 
 
 
