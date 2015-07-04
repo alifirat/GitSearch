@@ -6,6 +6,6 @@ val http_request:
 val search_git_project:
   (string * string) list -> XmlHttpRequest.xmlHttpRequest Js.t
 
-val search_commiters : string -> XmlHttpRequest.xmlHttpRequest Js.t
+val search_committers : string -> XmlHttpRequest.xmlHttpRequest Js.t
 
 val search_commits : string ->  XmlHttpRequest.xmlHttpRequest Js.t
