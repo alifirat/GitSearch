@@ -16,9 +16,16 @@ let http_request suffix data =
 
 let search_git_project data = http_request "search/repositories?" data
 
-let search_committers full_name = http_request ("repos/" ^ full_name ^ "/contributors") []
-
-let search_commits full_name = http_request ("repos/" ^ full_name ^ "/commits") [] 
+let search_committers full_name =
+  http_request
+    ("repos/" ^ full_name ^ "/contributors")
+    []
+    
+let search_commits full_name =
+  http_request
+    ("repos/" ^ full_name ^ "/commits?")
+    [("per_page","100"); ("until", Date.current_date())
+    ] 
 
   
 
