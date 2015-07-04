@@ -2,13 +2,23 @@ open Utils
 
 module Html = Dom_html
 
-let display_git_project_stats li_id = 
-  Printf.printf "%s\n" (Js.to_string li_id)
+let display_committers response = ()
+
+let display_committers_stats response = ()
+  
+let show_git_project_stats github_repo =  
+  let lcommitters_response = Http.search_committers (Js.to_string github_repo) in
+  let callback () = display_committers lcommitters_response in 
+  lcommitters_response##onreadystatechange <- Js.wrap_callback callback;
+  let committers_stats_response = Http.search_commits (Js.to_string github_repo) in
+  let callback () = display_committers_stats committers_stats_response in 
+  committers_stats_response##onreadystatechange <- Js.wrap_callback callback
+
 
 let display_github_projects response = match response##readyState with
   | XmlHttpRequest.DONE ->
     if response##status = 200 then        
-      let ul = create_ul "results" "git_projects" in
+      let ul = create_ul "github-search-results" "git_projects" in
       let l = Json_parser.extract_git_projects
           (Js.to_string response##responseText) in 
       List.iter (fun r -> 
@@ -16,9 +26,10 @@ let display_github_projects response = match response##readyState with
                       r.Data.name;
                       " - Description = ";
                       r.Data.description] in
-          let li = create_li ul r.Data.full_name data in
+          let li = create_li ul r.Data.full_name in
+          create_a li data;
           li##onclick <- Html.handler (fun _ ->
-              display_git_project_stats li##id;
+              show_git_project_stats li##id;
               Js._true)) l
     else Printf.printf "error"
   | _ -> ()
