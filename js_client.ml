@@ -2,15 +2,48 @@ open Utils
 
 module Html = Dom_html
 
-let display_committers response = ()
+let display_committers response = match response##readyState with
+  | XmlHttpRequest.DONE ->
+    if response##status = 200 then        
+      let ul = create_ul "repo-contributors" "contributors" in
+      Json_parser.get_contributors (Js.to_string response##responseText) 
+      |> List.iter (fun author -> 
+          let data = ["Login = "; author] in
+          let li = create_li ul author in
+          create_a li data) 
+    else Printf.printf "error"
+  | _ -> ()
 
-let display_committers_stats response = ()
+
+let display_committers_stats response = match response##readyState with
+  | XmlHttpRequest.DONE ->
+    if response##status = 200 then
+      begin 
+        Printf.printf "%s\n" (Js.to_string response##responseText);
+        let arr = 
+          Json_parser.get_commits  (Js.to_string response##responseText) 
+          |> Json_parser.group_commits_by_user
+          |> List.map (fun (author, commits) ->
+              Js_data.create_pieChart_data author commits)
+          |> Array.of_list in        
+        let js_arr = Js.array arr in
+        Firebug.console##log (js_arr);
+        Js.Unsafe.fun_call
+          (Js.Unsafe.variable "create_pieChart")
+          [|
+            Js.Unsafe.inject ((js_arr))              
+          |]
+      end
+    else Printf.printf "error"
+  | _ -> ()
+
   
 let show_git_project_stats github_repo =  
   let lcommitters_response = Http.search_committers (Js.to_string github_repo) in
   let callback () = display_committers lcommitters_response in 
   lcommitters_response##onreadystatechange <- Js.wrap_callback callback;
-  let committers_stats_response = Http.search_commits (Js.to_string github_repo) in
+  let committers_stats_response =
+    Http.search_commits (Js.to_string github_repo) in
   let callback () = display_committers_stats committers_stats_response in 
   committers_stats_response##onreadystatechange <- Js.wrap_callback callback
 
