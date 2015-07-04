@@ -23,10 +23,10 @@ let display_github_projects response = match response##readyState with
           (Js.to_string response##responseText) in 
       List.iter (fun r -> 
           let data = ["Name = ";
-                      r.Data.name;
+                      r.Git_data.name;
                       " - Description = ";
-                      r.Data.description] in
-          let li = create_li ul r.Data.full_name in
+                      r.Git_data.description] in
+          let li = create_li ul r.Git_data.full_name in
           create_a li data;
           li##onclick <- Html.handler (fun _ ->
               show_git_project_stats li##id;
