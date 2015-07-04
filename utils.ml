@@ -18,22 +18,21 @@ let clear_div div_id =
   Dom.list_of_nodeList (div##childNodes)
   |> List.iter (fun child -> Dom.removeChild div child)
 
-let create_table div_id table_id =
-  let div = get_element_by_id div_id in 
-  let table = Html.createTable doc in
-  table##id <- Js.string table_id;
-  Dom.appendChild div table;
-  table
+let create_ul div_id ul_id =
+  let div = get_element_by_id div_id in
+  let ul = Html.createUl doc in
+  ul##id <- Js.string ul_id;
+  Dom.appendChild div ul;
+  ul
 
-let create_tr table tr_id =
-  let tr = Html.createTr doc in
-  tr##id <- Js.string tr_id;
-  Dom.appendChild table tr;
-  tr
+let create_li ul li_id data =
+  let li = Html.createLi doc in
+  li##id <- Js.string li_id;
+  let li_content = String.concat " " data in
+  li##innerHTML <- Js.string li_content;
+  Dom.appendChild ul li;
+  li
 
-let create_td tr l =
-  List.iter (fun td_text ->
-      let td = Html.createTd doc in
-      td##innerHTML <- Js.string td_text;
-      Dom.appendChild tr td) l       
+
+
 

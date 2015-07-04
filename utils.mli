@@ -12,11 +12,9 @@ val input_value : string -> string
 (** [clear_div div_id] remove all childs of the div having the id [div_id]. *)
 val clear_div : string -> unit
 
-val create_table : string -> string -> Dom_html.tableElement Js.t
+val create_ul : string ->  string -> Dom_html.uListElement Js.t
 
-val create_tr : Dom_html.tableElement Js.t -> string -> Dom_html.tableRowElement Js.t 
-
-val create_td : Dom_html.tableRowElement Js.t -> string list -> unit 
-                               
+val create_li : Dom_html.uListElement Js.t -> string -> string list ->
+  Dom_html.liElement Js.t 
 
 
