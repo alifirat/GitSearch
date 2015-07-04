@@ -6,6 +6,7 @@ let doc = Html.document
 let win = Html.window
 
 let get_element_by_id id =
+  Printf.printf "%s\n" id;
   Js.Opt.get (doc##getElementById (Js.string id)) (fun () -> assert false)
 
 let input_value id =
@@ -25,13 +26,17 @@ let create_ul div_id ul_id =
   Dom.appendChild div ul;
   ul
 
-let create_li ul li_id data =
+let create_li ul li_id =
   let li = Html.createLi doc in
   li##id <- Js.string li_id;
-  let li_content = String.concat " " data in
-  li##innerHTML <- Js.string li_content;
   Dom.appendChild ul li;
   li
+
+let create_a li data =
+  let a = Html.createA doc in
+  let str = String.concat " " data in 
+  a##innerHTML <- Js.string str;
+  Dom.appendChild li a
 
 
 
