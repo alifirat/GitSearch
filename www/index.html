@@ -8,32 +8,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.2/d3.min.js" charset="utf-8"></script>
     <script src="build/nv.d3.js"></script>
     <script src="lib/stream_layers.js"></script>
-
-    <style>
-        text {
-            font: 12px sans-serif;
-        }
-        svg {
-            display: block;
-            float: left;
-            height: 350px !important;
-            width: 350px !important;
-        }
-        html, body {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
-            width: 100%;
-        }
-    </style>
-
+	<script src="timeline/vis.js"></script>
+	<link href="css/vis.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="./css/style.css">
   </head>
   
   
   <body>
     <h1 id="welcome">Welcome to GitSearch! </h1>
-    <h1 id="authors">Authors : Ali-Firat Kilic</h1>
     
     <div id="github-search-rep">
 	  Search a GitHub project : <input type="text" id="user-search">
@@ -42,39 +27,54 @@
     
     <div id="github-search-results"></div>
 
+
 	<div id="github-repo-stats">
 	  <div id="repo-contributors"></div>
 
 	  <div id="repo-contributors-stats">
-		<svg id="committers-impact" class="mypiechart"></svg>
-	  </div>
-
+		<svg></svg>
+	  </div>	  
 	  <div id="repo-timeline"></div>
 	</div>
   </body>
-	<script src="js/githubsearch.js"></script>
+	 <script src="js/githubsearch.js"></script> 
 	<script>
+	
+function create_discreteBar_chart (data) {
+	nv.addGraph(function() {
+        var chart = nv.models.discreteBarChart()
+            .x(function(d) { return d.label })
+			.y(function(d) { return d.value })
 
-function create_pieChart(data) {	
-    var height = 650;
-    var width = 600;
-
-    nv.addGraph(function() {
-        var chart = nv.models.pieChart()
-            .x(function(d) { return d.key })
-            .y(function(d) { return d.y })
-            .width(width)
-            .height(height);
-
-        d3.select("#committers-impact")
+            .staggerLabels(true)
+        //.staggerLabels(historicalBarChart[0].values.length > 8)
+            .showValues(true)
+            .duration(250)
+        ;
+		
+        d3.select('#repo-contributors-stats svg')
             .datum(data)
-            .transition().duration(1200)
-            .attr('width', width)
-            .attr('height', height)
             .call(chart);
+
+        nv.utils.windowResize(chart.update);
         return chart;
     });
+
 }
+
+function create_timeline(data) {
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('repo-timeline');
+
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet(data);
+  // Configuration for the Timeline
+  var options = {};
+	
+	// Create a Timeline
+	var timeline = new vis.Timeline(container, items, options);
+}
+
 
  
 </script>
