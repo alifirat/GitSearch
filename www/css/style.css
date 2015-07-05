@@ -1,8 +1,56 @@
-ul li a {
-    padding: 5px 30px 5px 10px;
+/* ul li a { */
+/*     padding: 5px 30px 5px 10px; */
+/*     display: block; */
+/* } */
+
+text {
+    font: 12px sans-serif;
+}
+svg {
     display: block;
 }
+html, body, #chart1, svg {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
 
-a:hover {
+#github-search-results a:hover {
 	color : red;
 }
+
+text {
+    font: 12px sans-serif;
+}
+
+svg {
+    display: block;
+    float: left;
+    height: 350px !important;
+    width: 350px !important;
+}
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+ul#GitSearchTabs {
+	padding-top:10px;
+}
+
+div#repo-contributors-stats {
+	display:none;
+}
+
+div#repo-timeline {
+	display:none
+}
+
+svg.nvd3-svg {
+	height: 500px !important;
+	width: 2200px !important;
+} 
