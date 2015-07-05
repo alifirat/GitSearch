@@ -40,7 +40,8 @@ let get_commits str =
           let login = obj |> member "committer" |> member "login" |> to_string
           in Git_data.create_commit login message date         
         with Yojson.Basic.Util.Type_error _ ->
-          let null = "NULL" in Git_data.create_commit null null null) in   
+          let null = "NULL" in Git_data.create_commit null null null)
+    |> List.rev in 
   fst (take l 100)
 
 
