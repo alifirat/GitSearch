@@ -16,6 +16,6 @@ val create_ul : string ->  string -> Dom_html.uListElement Js.t
 
 val create_li : Dom_html.uListElement Js.t -> string -> Dom_html.liElement Js.t
 
-val create_a : Dom_html.liElement Js.t -> string list -> unit
+val create_a : Dom_html.liElement Js.t -> string -> unit
 
 

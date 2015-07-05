@@ -32,9 +32,9 @@ let create_li ul li_id =
   Dom.appendChild ul li;
   li
 
-let create_a li data =
+(* Todo : change data by str *)
+let create_a li str =
   let a = Html.createA doc in
-  let str = String.concat " " data in 
   a##innerHTML <- Js.string str;
   Dom.appendChild li a
 
