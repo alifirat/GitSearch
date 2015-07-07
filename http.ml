@@ -9,7 +9,6 @@ let concat_parameters data =
 let http_request suffix data =
   let response = XmlHttpRequest.create () in
   let url = github_api_url ^ suffix ^ (concat_parameters data) in
-  Printf.printf "url = %s\n" url;
   response##_open(Js.string "GET", Js.string url, Js.bool true);
   response##send (Js.some (Js.string ""));
   response
