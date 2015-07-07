@@ -14,10 +14,11 @@ let input_value id =
   let input = Js.Unsafe.coerce input in 
   Js.to_string (input##value)
 
-let clear_div div_id =
-  let div = get_element_by_id div_id in
-  Dom.list_of_nodeList (div##childNodes)
-  |> List.iter (fun child -> Dom.removeChild div child)
+let remove_allChilds id =
+  let element = get_element_by_id id in
+  Dom.list_of_nodeList (element##childNodes)
+  |> List.iter (fun child -> Dom.removeChild element child)
+
 
 let create_ul div_id ul_id =
   let div = get_element_by_id div_id in
@@ -32,12 +33,13 @@ let create_li ul li_id =
   Dom.appendChild ul li;
   li
 
-(* Todo : change data by str *)
 let create_a li str =
   let a = Html.createA doc in
-  a##innerHTML <- Js.string str;
+  a##textContent <- Js.some (Js.string str);
   Dom.appendChild li a
 
-
-
+(* let update_url bookmark_id key value = *)
+(*   let url = Js.to_string win##location##href in  *)
+(*   let new_url = Js.string (url ^ "#" ^ key ^ "=" ^ value) in *)
+(*   ((win##history))##pushState(Js.string "foo",Js.string bookmark_id,Js.some (new_url)) *)
 
