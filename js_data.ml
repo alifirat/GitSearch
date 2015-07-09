@@ -5,10 +5,10 @@ end
 
 let empty_discreteBar_item () : discreteBar_item Js.t = Js.Unsafe.obj [| |]
 
-let create_discreteBar_item label value =
+let create_discreteBar_item lbl v =
   let data = empty_discreteBar_item () in
-  data##label <- Js.string label;
-  data##value <- value;
+  data##label <- Js.string lbl;
+  data##value <- v;
   data
 
 class type discreteBar_chart = object
@@ -18,10 +18,10 @@ end
 
 let empty_discreteBar_chart () : discreteBar_chart Js.t = Js.Unsafe.obj [| |]    
 
-let create_discreteBar_chart key values = 
+let create_discreteBar_chart k vls = 
   let chart = empty_discreteBar_chart () in
-  chart##key <- Js.string key;
-  chart##values <- values;
+  chart##key <- Js.string k;
+  chart##values <- vls;
   chart
 
 
@@ -34,11 +34,11 @@ end
 
 let empty_timeline_data () : timeline_data Js.t = Js.Unsafe.obj [| |]
 
-let create_timeline_data id content start =
+let create_timeline_data id cnt s =
   let data = empty_timeline_data () in
   data##id <- id;
-  data##content <- Js.string content;
-  data##start <- Js.string start;
+  data##content <- Js.string cnt;
+  data##start <- Js.string s;
   data
   
 

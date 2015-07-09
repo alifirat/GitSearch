@@ -1,7 +1,7 @@
 open Yojson.Basic.Util
 
-let extract_git_projects responseText =
-  let json = Yojson.Basic.from_string responseText in
+let extract_git_projects json =
+  let json = Yojson.Basic.from_string json in
   let items = json |> member "items" in
   items
   |> to_list
@@ -11,8 +11,8 @@ let extract_git_projects responseText =
       let description = obj |> member "description" |> to_string in
       Git_data.create_git_project_informations name full_name description)
 
-let get_contributors str =
-  let json = Yojson.Basic.from_string str in
+let get_contributors json =
+  let json = Yojson.Basic.from_string json in
   json
   |> to_list
   |> List.map (fun obj -> obj |> member "login" |> to_string)
@@ -26,7 +26,7 @@ let take l n =
         else commit::acc,n+1) ([], 0) l in
   cut_list l n
 
-let get_commits str = 
+let get_commits json = 
   let json = Yojson.Basic.from_string str in
   let l =
     json
