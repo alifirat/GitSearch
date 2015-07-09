@@ -16,10 +16,10 @@ Author : Ali-Firat Kilic
 <p>To install these packages, you can install them with <a href="http://opam.ocaml.org/">OPAM</a>. Enter the following commands : </p>
 
 <ul>
-<li>``opam install ocamlfind``</li>
-<li>``opam install js_of_ocaml``</li>
-<li>``opam install yojson``</li>
-<li>``opam install camlp4o``</li>
+<li>opam install ocamlfind</li>
+<li>opam install js_of_ocaml</li>
+<li>opam install yojson</li>
+<li>opam install camlp4o</li>
 </ul>
 
 <h3> Compilation </h3>
