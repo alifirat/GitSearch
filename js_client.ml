@@ -2,6 +2,8 @@ open Utils
 
 module Html = Dom_html
 
+(** [display_commiters response] get all committers contains in [response] and
+    display it all on the web application. *)
 let display_committers response = match response##readyState with
   | XmlHttpRequest.DONE ->
     begin match response##status with 
@@ -14,9 +16,9 @@ let display_committers response = match response##readyState with
           create_a li str) 
     | _ -> Printf.printf "Unexcepted status" end
   | _ -> Printf.printf "Unexcepted state"
-    
 
-
+(** [display_committers_stats response] get the 100 latest commits contains in 
+    [response] and display it all on the web application. *)
 let display_committers_stats response = match response##readyState with
   | XmlHttpRequest.DONE ->
     begin match response##status with
@@ -53,7 +55,9 @@ let display_committers_stats response = match response##readyState with
       | _ -> Printf.printf "Unexcepted status\n" end
   | _ -> Printf.printf "Unexcepted state\n"
 
-  
+(** [show_git_project_stats github_repo] show the stats (contributors, analysis
+    on the 100 latest commits and a timeline) of the GitHub project having the 
+    name  [github_repo]. *)
 let show_git_project_stats github_repo =
   (* update_url (Js.to_string github_repo) "project" (Js.to_string github_repo); *)
   (* Js_client_ui.add_project_title "github-repo-stats" "project-title" (Js.to_string github_repo); *)
@@ -67,7 +71,8 @@ let show_git_project_stats github_repo =
   let callback () = display_committers_stats committers_stats_response in 
   committers_stats_response##onreadystatechange <- Js.wrap_callback callback
 
-
+(** [display_github_projects response] display all GitHub projects contains 
+    in [response] resulting from a user search.*)
 let display_github_projects response = match response##readyState with
   | XmlHttpRequest.DONE ->
     if response##status = 200 then
@@ -101,9 +106,8 @@ let display_github_projects response = match response##readyState with
               Js._true)) l end        
     else Printf.printf "error"
   | _ -> ()
-
   
-let show_github_projects button_search_id input_id =  
+let set_callback_for_search button_search_id input_id =  
     let button_search = get_element_by_id button_search_id in  
     button_search##onclick <- Html.handler (fun _ ->
         let user_search = input_value input_id in
