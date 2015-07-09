@@ -1,10 +1,11 @@
 Author : Ali-Firat Kilic
 
-************* Requirements *******************
+<h3> Requirements </h3>
 
-To compile this project, you need to have Ocaml plus the following packages : 
-- ocamlfind
-- ocamlc/ocamlopt
+<p>To compile this project, you need to have Ocaml plus the following packages :
+<ul>  
+<li>ocamlfind</li>
+<li>ocamlc/ocamlopt</li>
 - yojson
 - js_of_ocaml
 - js_of_ocaml.syntax
@@ -17,7 +18,7 @@ To install these packages, you can install them with OPAM (see : http://opam.oca
 - opam install yojson
 - opam install camlp4o
 
-************* Compilation *******************
+<h3> Compilation </h3>
 
 Enter the following command in your terminal : 
 	  
