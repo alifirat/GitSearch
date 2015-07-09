@@ -3,7 +3,6 @@ open Utils
 module Html = Dom_html
 
 let create_menu_tabs ul_id =
-  let div = get_element_by_id "github-repo-stats" in 
   let ul = get_element_by_id ul_id in 
   let li_contributors = create_li ul "tabContributors" in
   li_contributors##className <- Js.string "active";
@@ -55,12 +54,18 @@ let add_project_title div_id id title =
   h1##style##textAlign <- Js.string "center";
   Dom.insertBefore Html.document##body h1 (Js.some div)
 
+let string_of_display display = match display with 
+    | `Block -> "block"
+    | `None -> "none"
+
+(** [change_displaying id display] set the css property display of the
+    element with the id [id] to [display]. *)
 let change_displaying id display =
   let elt = get_element_by_id id in
-  elt##style##display <- Js.string display 
+  elt##style##display <- Js.string (string_of_display display)
+      
+let show_element id = change_displaying id `Block
 
-let show_element id = change_displaying id "block"
-
-let hide_element div = change_displaying div "none"
+let hide_element div = change_displaying div `None
 
 
