@@ -1,6 +1,6 @@
 (** [search_git_project data] send a request corresponding to a search of a 
-    GitHub project (contains in [data]) and return the resulting response of the 
-    server. *)
+    GitHub project (the name is in [data]) and return the resulting response 
+    from  the  server. *)
 val search_git_project:(string*string) list->XmlHttpRequest.xmlHttpRequest Js.t
 
 (** [search_commiters name] return the resulting response from the server 

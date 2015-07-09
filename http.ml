@@ -1,17 +1,20 @@
 open Utils
 
-(* Global github api url (hope that doesn't change!) *)
+(** Global github api url (hope that doesn't change!) *)
 let github_api_url = "https://api.github.com/"
 
-(* [concat_list data sep] return the concatenation of every element in [data] 
+(** [concat_list data sep] return the concatenation of every element in [data] 
    separated by [sep]. *) 
 let concat_list data sep =
   List.map (fun (field,value) -> field ^ sep ^ value) data
   |> String.concat "&"
 
-let http_request suffix data =
+(** [http_request suffix params] send a HTTP GET request to the URL resulting
+    from the concatenation of [github_api_url], the target information [t] and
+    the URL parameters [params]. *)
+let http_request t params =
   let response = XmlHttpRequest.create () in
-  let url = github_api_url ^ suffix ^ (concat_list data  "=") in
+  let url = github_api_url ^ t ^ (concat_list params  "=") in
   response##_open(Js.string "GET", Js.string url, Js.bool true);
   response##send (Js.some (Js.string ""));
   response
