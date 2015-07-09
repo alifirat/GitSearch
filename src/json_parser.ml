@@ -27,7 +27,7 @@ let take l n =
   cut_list l n
 
 let get_commits json = 
-  let json = Yojson.Basic.from_string str in
+  let json = Yojson.Basic.from_string json in
   let l =
     json
     |> to_list 
