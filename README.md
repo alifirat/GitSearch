@@ -28,7 +28,7 @@ Enter the following command in your terminal :
 	  
 ``$ make``
 
-************* Execution *******************
+<h3> Execution </h3>
 
 Open in a web browser the file index.html (located in www)
 
