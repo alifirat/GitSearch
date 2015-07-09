@@ -18,27 +18,30 @@
   
   
   <body>
-    <h1 id="welcome">Welcome to GitSearch! </h1>
-    
-    <div id="github-search-rep">
-	  Search a GitHub project : <input type="text" id="user-search">
-	  <button type="button" id="user-search-validate"> Search </button>
+	<div id="project-title">
+      <h1 id="title"></h1>
+	</div>
+      <div id="github-search-rep">
+	  <input type="text" id="user-search">
+	  <button type="button" id="user-search-validate"> Search a Git Project</button>
     </div>
-    
+    <ul class="nav nav-tabs" id="GitSearchTabs" style="display:none">
+	</ul>
     <div id="github-search-results"></div>
-
 
 	<div id="github-repo-stats">
 	  <div id="repo-contributors"></div>
 
 	  <div id="repo-contributors-stats">
-		<svg></svg>
+		<svg id="svg"></svg>
 	  </div>	  
 	  <div id="repo-timeline"></div>
 	</div>
   </body>
-	 <script src="js/githubsearch.js"></script> 
+	<script src="js/githubsearch.js"></script> 
 	<script>
+	
+
 	
 function create_discreteBar_chart (data) {
 	nv.addGraph(function() {
