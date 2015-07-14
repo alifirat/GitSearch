@@ -21,9 +21,20 @@
 	<div id="project-title">
       <h1 id="title"></h1>
 	</div>
-      <div id="github-search-rep">
-	  <input type="text" id="user-search">
-	  <button type="button" id="user-search-validate"> Search a Git Project</button>
+	<div class="row">
+      <div class="col-lg-4 col-lg-offset-4">
+        <div class="input-group">
+          <input id="user-search" type="text" class="form-control" /> 
+          <span class="input-group-btn">
+			<!-- <input type="text" id="user-search"> -->
+			<!-- <button type="button" id="user-search-validate"> Search a Git Project -->
+            <button id="user-search-validate" class="btn btn-default" type="button">Search a GitHub Project!</button>
+          </span>
+        </div><!-- /input-group -->
+      </div><!-- /.col-lg-4 -->
+	</div>
+    <div id="github-search-rep">
+	  </button>
     </div>
     <ul class="nav nav-tabs" id="GitSearchTabs" style="display:none">
 	</ul>
