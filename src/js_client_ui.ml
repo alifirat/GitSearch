@@ -37,22 +37,9 @@ let create_menu_tabs ul_id =
   create_a li_timeline "Timeline"
 
 
-let add_favorite_button div_id id content =
-  let div = get_element_by_id div_id in 
-  let a = Html.createA doc in
-  a##id <- Js.string id;
-  a##rel <- Js.string "sidebar";
-  a##textContent <- Js.some (Js.string content);
-  a##href <- Js.string "#";
-  Dom.insertBefore Html.document##body a (Js.some div)
-
-let add_project_title div_id id title =
-  let div = get_element_by_id div_id in
-  let h1 = Html.createH1 doc in
-  h1##id <- Js.string id;
-  h1##textContent <- Js.some (Js.string title);
-  h1##style##textAlign <- Js.string "center";
-  Dom.insertBefore Html.document##body h1 (Js.some div)
+let set_project_title id title =
+  let h1 = get_element_by_id id in
+  h1##textContent <- Js.some (Js.string title)
 
 let string_of_display display = match display with 
     | `Block -> "block"
