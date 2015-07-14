@@ -1,10 +1,18 @@
-
 text {
     font: 12px sans-serif;
 }
+
 svg {
     display: block;
+
 }
+
+input[type=text] {
+	padding:5px; border:2px solid #ccc; 
+	-webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
 html, body, #chart1, svg {
     margin: 0px;
     padding: 0px;
@@ -14,6 +22,10 @@ html, body, #chart1, svg {
 
 #github-search-results a:hover {
 	color : red;
+}
+
+#github-search-results {
+	margin-top:10px;
 }
 
 text {
