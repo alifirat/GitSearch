@@ -18,17 +18,13 @@
   
   
   <body>
-	<div id="project-title">
-      <h1 id="title"></h1>
-	</div>
 	<div class="row">
       <div class="col-lg-4 col-lg-offset-4">
         <div class="input-group">
           <input id="user-search" type="text" class="form-control" /> 
           <span class="input-group-btn">
-			<!-- <input type="text" id="user-search"> -->
-			<!-- <button type="button" id="user-search-validate"> Search a Git Project -->
-            <button id="user-search-validate" class="btn btn-default" type="button">Search a GitHub Project!</button>
+            <button id="user-search-validate" class="btn btn-default" type="button">Search a GitHub Project!
+			</button>
           </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-4 -->
@@ -40,6 +36,10 @@
 	</ul>
     <div id="github-search-results"></div>
 
+	<h1 id="project-title"></h1>
+	<a id="bookmark" rel="sidebar">
+	  <img src="images/favorite.jpg" id="favorite">
+	</a>
 	<div id="github-repo-stats">
 	  <div id="repo-contributors"></div>
 

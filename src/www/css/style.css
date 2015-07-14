@@ -7,10 +7,16 @@ svg {
 
 }
 
-input[type=text] {
-	padding:5px; border:2px solid #ccc; 
-	-webkit-border-radius: 5px;
-    border-radius: 5px;
+#favorite {
+	display:none;
+	float: right;
+	height: 50px;
+	width: 50px;
+}
+
+#project-title {
+	display:none;
+	text-align:center;
 }
 
 html, body, #chart1, svg {
