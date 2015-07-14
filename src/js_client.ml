@@ -60,8 +60,9 @@ let display_committers_stats response = match response##readyState with
     name  [github_repo]. *)
 let show_git_project_stats github_repo =
   (* update_url (Js.to_string github_repo) "project" (Js.to_string github_repo); *)
-  (* Js_client_ui.add_project_title "github-repo-stats" "project-title" (Js.to_string github_repo); *)
-  (* Js_client_ui.add_favorite_button "github-repo-stats" "bookmark" "Add to favorites"; *)
+  Js_client_ui.set_project_title "project-title" (Js.to_string github_repo);
+  Js_client_ui.show_element "project-title";
+  Js_client_ui.show_element "favorite";
   Js_client_ui.hide_element "github-search-results";
   let lcommitters_response = Http.search_committers (Js.to_string github_repo) in
   let callback () = display_committers lcommitters_response in 
@@ -82,7 +83,9 @@ let display_github_projects response = match response##readyState with
         Utils.remove_allChilds "svg";
         Utils.remove_allChilds "repo-timeline";
         Utils.remove_allChilds "GitSearchTabs";
+        Js_client_ui.hide_element "project-title";
         Js_client_ui.hide_element "github-repo-stats";
+        Js_client_ui.hide_element "favorite";
         Js_client_ui.hide_element "GitSearchTabs";
         Js_client_ui.show_element "github-search-results";
         let ul = create_ul "github-search-results" "git_projects" in
