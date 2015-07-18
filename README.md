@@ -1,4 +1,13 @@
-Author : Ali-Firat Kilic
+<h3> Description </h3>
+
+<p>
+	GitSearch is an web application allowing to search an GitHub project and to get the following stats :
+	<ul>
+	  <li>The list of contributors</li>
+	  <li>The impact of every contributor based on the last 100 commits</li>
+	  <li>A timeline showing the commits and also based on the last 100 commits</li>
+	</ul>.
+</p>
 
 <h3> Requirements </h3>
 
